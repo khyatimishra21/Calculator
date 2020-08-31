@@ -8,67 +8,67 @@ import io.cucumber.java.en.When;
 import static org.junit.Assert.assertEquals;
 
 public class Step_definition {
-    private Calculator calc;
-    private ScientificCalculator calc1;
-    private int output;
-    private double output1;
+    private Calculator simpleCalculator;
+    private ScientificCalculator scientificCalculator;
+    private int simpleCalculatorOutput;
+    private double scientificCalculatorOutput;
 
     @Given("I have entered {int} and {int} into the calculator")
     public void I_have_entered_into_the_calculator(int arg0, int arg1) {
-        calc = new Calculator(arg0, arg1);
+        simpleCalculator = new Calculator(arg0, arg1);
     }
 
     @Given("I have entered {double} into the calculator")
-    public void iHaveEnteredInput_IntoTheCalculator(double arg0) { calc1 = new ScientificCalculator(arg0); }
+    public void iHaveEnteredInput_IntoTheCalculator(double arg0) { scientificCalculator = new ScientificCalculator(arg0); }
 
     @Given("I have entered {double} and {double} into the calculator")
-    public void iHaveEnteredInput_IntoTheCalculator(double arg0,double arg1) { calc1 = new ScientificCalculator(arg0, arg1); }
+    public void iHaveEnteredInput_IntoTheCalculator(double arg0,double arg1) { scientificCalculator = new ScientificCalculator(arg0, arg1); }
 
     @When("I press add")
     public void I_press_add() {
-        output = calc.add();
+        simpleCalculatorOutput = simpleCalculator.add();
     }
 
     @When("I press subtract")
     public void I_press_subtract() {
-        output = calc.subtract();
+        simpleCalculatorOutput = simpleCalculator.subtract();
     }
 
     @When("I press multiply")
     public void I_press_multiply() {
-        output = calc.multiply();
+        simpleCalculatorOutput = simpleCalculator.multiply();
     }
 
     @When("I press divide")
     public void I_press_divide() {
-        output = calc.division();
+        simpleCalculatorOutput = simpleCalculator.division();
     }
 
     @When("I press square root")
-    public void I_press_square_root() { output1 = calc1.square_root();
+    public void I_press_square_root() { scientificCalculatorOutput = scientificCalculator.square_root();
     }
 
     @When("I press exponent")
     public void I_press_exponent() {
-        output1 = calc1.exponent();
+        scientificCalculatorOutput = scientificCalculator.exponent();
     }
 
     @When("I press log10")
-    public void I_press_log10() { output1 = calc1.log10();
+    public void I_press_log10() { scientificCalculatorOutput = scientificCalculator.log10();
     }
 
     @When("I press log")
-    public void I_press_log() { output1 = calc1.log();
+    public void I_press_log() { scientificCalculatorOutput = scientificCalculator.log();
     }
 
     @Then("the result should be {int} on the screen")
     public void the_result_should_be_on_the_screen(int expectedRes) {
-        assertEquals(expectedRes, output);
+        assertEquals(expectedRes, simpleCalculatorOutput);
     }
 
     @Then("the result should be {double} on the screen")
     public void the_result_should_be_on_the_screen1(double expectedRes) {
-        assertEquals(expectedRes, output1, 0.001);
+        assertEquals(expectedRes, scientificCalculatorOutput, 0.001);
     }
 
 
